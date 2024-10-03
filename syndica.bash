@@ -34,10 +34,10 @@ function git_prompt()
     local dirty=""
 
     if [ -n "$status" ]; then
-        dirty="\[\e[1;38;5;196m\]✗$reset_color"
+        dirty="\[\e[1;38;5;196m\] ✗ $reset_color"
     fi
 
-    local prompt="$reset_color->(\[\e[38;5;93m\]git:$reset_color[\e[38;5;214m\]$branch$reset_color] $dirty )"
+    local prompt="$reset_color->(\[\e[38;5;93m\]git:$reset_color[\e[38;5;214m\]$branch$reset_color]$dirty)"
 
     echo "$prompt"
 }
