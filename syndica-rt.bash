@@ -29,7 +29,7 @@ function command_prompt()
         git_info="$(git_prompt)$reset_color"
     fi
 
-    PS1="$new_line/--($user_host)-[$current_dir]$venv_info$git_info $error_code\n\\--$user_symbol "
+    PS1="$new_line$reset_color/--($user_host)-[$current_dir]$venv_info$git_info $error_code\n\\--$user_symbol "
 }
 
 
