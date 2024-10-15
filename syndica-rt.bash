@@ -32,7 +32,6 @@ function command_prompt()
     PS1="$reset_color$new_line/--($user_host)-[$current_dir]$venv_info$git_info $error_code\n\\--$user_symbol "
 }
 
-
 function venv_prompt()
 {
     local venv_name=$(basename "$VIRTUAL_ENV")
@@ -43,7 +42,6 @@ function venv_prompt()
 
     echo "$prompt"
 }
-
 
 function git_prompt()
 {
@@ -61,7 +59,5 @@ function git_prompt()
 
     echo "$prompt"
 }
-
-
 
 PROMPT_COMMAND=command_prompt
