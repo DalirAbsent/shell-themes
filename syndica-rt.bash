@@ -1,7 +1,8 @@
 function command_prompt()
 {
+    reset_color="\[\e[0;38;5;255m\]"
+
     local exit_code=$?
-    local reset_color="\[\e[0;38;5;255m\]"
     local user_host="\[\e[1;38;5;33m\]\u@\h$reset_color"
     local current_dir="\[\e[1;38;5;10m\]\w$reset_color"
     local user_symbol="\[\e[1;38;5;255m\]\$$reset_color"
@@ -35,9 +36,6 @@ function command_prompt()
 function venv_prompt()
 {
     local venv_name=$(basename "$VIRTUAL_ENV")
-
-    local reset_color="\[\e[1;38;5;255m\]"
-
     local prompt="$reset_color{\[\e[1;38;5;69m\]$venv_name$reset_color}"
 
     echo "$prompt"
@@ -47,8 +45,6 @@ function git_prompt()
 {
     local branch=$(git rev-parse --abbrev-ref HEAD)
     local status=$(git status --porcelain)
-
-    local reset_color="\[\e[1;38;5;255m\]"
     local dirty=""
 
     if [ -n "$status" ]; then
