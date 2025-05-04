@@ -1,8 +1,7 @@
 function command_prompt()
 {
-    reset_color="\[\e[0;38;5;255m\]"
-
     local exit_code=$?
+    reset_color="\[\e[0;38;5;255m\]"
     local user_host="\[\e[1;38;5;33m\]\u@\h$reset_color"
     local current_dir="\[\e[1;38;5;10m\]\w$reset_color"
     local user_symbol="\[\e[1;38;5;255m\]\$$reset_color"
@@ -51,7 +50,7 @@ function git_prompt()
         dirty="\[\e[1;38;5;196m\] * $reset_color"
     fi
 
-    local prompt="$reset_color->(\[\e[38;5;93m\]git:$reset_color[\e[38;5;214m\]$branch$reset_color]$dirty)"
+    local prompt="$reset_color->(\[\e[1;38;5;93m\]git:$reset_color[\e[1;38;5;214m\]$branch$reset_color]$dirty)"
 
     echo "$prompt"
 }
