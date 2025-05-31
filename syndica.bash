@@ -25,7 +25,7 @@ function command_prompt()
         venv_info="$(venv_prompt)$reset_color"
     fi
 
-    if [ $(git rev-parse --is-inside-work-tree 2> /dev/null) ]; then
+    if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
         git_info="$(git_prompt)$reset_color"
     fi
 
@@ -42,12 +42,16 @@ function venv_prompt()
 
 function git_prompt()
 {
-    local branch=$(git rev-parse --abbrev-ref HEAD)
-    local status=$(git status --porcelain)
-    local dirty=""
+    if git rev-parse --verify HEAD > /dev/null 2>&1; then
+        local branch=$(git rev-parse --abbrev-ref HEAD)
+    else
+        local branch="HEAD"
+    fi
 
-    if [ -n "$status" ]; then
-        dirty="\[\e[1;38;5;196m\] ✗ $reset_color"
+    if [ -n "$(git status --porcelain)" ]; then
+        local dirty="\[\e[1;38;5;196m\] ✗ $reset_color"
+    else
+        local dirty=""
     fi
 
     local prompt="$reset_color->(\[\e[1;38;5;93m\]git:$reset_color[\e[1;38;5;214m\]$branch$reset_color]$dirty)"
